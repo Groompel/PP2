@@ -13,7 +13,7 @@ namespace Task4
         {
             string path = @"C:\Test\B\Red";
             string path1 = @"C:\Test\B\Red\Blue";
-            string fileName = "TestFolder1";
+            string fileName = "TestFolder1234";
             using (File.Create(Path.Combine(path, fileName)))
             {
             };

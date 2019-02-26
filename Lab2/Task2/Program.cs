@@ -37,13 +37,13 @@ namespace Task2
 
             int cnt = 0;
 
-                for (int i = 0; i < arr.Length; i++)
+              for(int i= 0; i < arr.Length; i++)
+            {
+                if (IsPrime(arr[i]))
                 {
-                    if (IsPrime(arr[i]))
-                    {
                     cnt++;
-                    }
                 }
+            }
             string[] primes = new string[cnt];
             int k = 0;
             for (int i = 0; i < arr.Length; i++)

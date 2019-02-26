@@ -12,7 +12,7 @@ namespace Lab2
         {
             bool isPal = true;
             string s = Console.ReadLine();
-            for(int i = 0; i < s.Length; i++)
+            for(int i = 0; i <= s.Length/2; i++)
             {
                 if (s[i] != s[s.Length - i - 1])
                 {

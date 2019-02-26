@@ -10,15 +10,20 @@ namespace Task2
     {
         public string Name { get; set; }
         public string Id { get; set; }
-        public int YearOfStudy { get; set; }
-        public Student(string n, string i)
+        public int YearOfStudy { get; set; };
+        public Student(string n, string id)
         {
             Name = n;
-            Id = i;
+            Id = id;
         }
         public void IncrementYearOfStudy()
         {
             YearOfStudy++;
+        }
+
+        public static void Hello()
+        {
+            Console.WriteLine("Hello");
         }
     }
 
@@ -27,6 +32,8 @@ namespace Task2
     {
         static void Main(string[] args)
         {
+
+            
             Student s = new Student("John", "18BD00777")
             {
                 YearOfStudy = 1
@@ -34,6 +41,7 @@ namespace Task2
             Console.WriteLine(s.Name + " na " + s.YearOfStudy);
             s.IncrementYearOfStudy();
             Console.WriteLine(s.Name + " teper' na " + s.YearOfStudy);
+           
         }
     }
 }
