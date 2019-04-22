@@ -14,36 +14,25 @@ namespace SpaceTest
     {
         Bitmap bitmap;
         Graphics graphics;
-        Point firstPoint;
-        Point secondPoint;
-        Pen eraser;
-        int brushWidth = 1;
-        int eraserWidth = 1;
         Pen pen;
         int x = 50;
         int y = 30;
-        int cnt = 1;
+        int cnt = 0;
         
         public Form1()
         {
             
             InitializeComponent();
-            pen = new Pen(Color.Blue, brushWidth);
-            eraser = new Pen(Color.White, eraserWidth);
+            pen = new Pen(Color.Blue, 7);
+            
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             graphics = Graphics.FromImage(bitmap);
-            graphics.Clear(Color.White);
+            
             pictureBox1.Image = bitmap;
 
             pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-            eraser.StartCap = System.Drawing.Drawing2D.LineCap.Round;
+
             pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-            eraser.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-            graphics.Clear(Color.DarkBlue);
-
-            graphics.FillRectangle(new SolidBrush(Color.Green), 0, 550, 780, 250);
-
-            
 
         }
 
@@ -102,27 +91,27 @@ namespace SpaceTest
 
 
             graphics.FillEllipse(new SolidBrush(Color.White), x, y, 30, 30);
+
             Point[] star =
             {
-                new Point(50, 100),
-                new Point(x + 20, y + 20),
-                new Point(x + 20, y + 50),
-                new Point(x, y + 70),
-                new Point(x - 20, y + 50),
-                new Point(x - 20, y + 20),
+                new Point(330, 100),
+                new Point(20, 20),
+                new Point(20, 50),
+                new Point(50,  70),
+                new Point(20, 50),
+                new Point(20, 20),
             };
             graphics.FillPolygon(new SolidBrush(Color.Yellow), star);
             Refresh();
         }
             private void timer1_Tick(object sender, EventArgs e)
         {
-            //ve();x+
-            
-            x += 100;
-            y += 50;
+
+            x += 200;
+           
             if (cnt < 3)
             { 
-                if(cnt % 7 == 1)
+                if(cnt % 6 == 0)
                 {
                     x = 50; y = 30;
                 }
@@ -130,13 +119,13 @@ namespace SpaceTest
             }
             else
             {
-                if(cnt % 7 == 3)
+                if(cnt % 6 == 3)
                 {
                     x = 50; y = 30;
                 }
                 DrawNight();
             }
-            cnt = (cnt + 1) % 7;
+            cnt = (cnt + 1) % 6;
         }
     }
 }
