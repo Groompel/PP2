@@ -55,30 +55,11 @@ namespace SpaceTest
         private void DrawDay()
         {
             
-            this.BackColor = Color.DarkBlue;
             graphics.Clear(Color.Orange);
             graphics.FillRectangle(new SolidBrush(Color.Green), 0, 250, 780, 250);
-
-
+ 
             graphics.FillEllipse(new SolidBrush(Color.Yellow), x, y, 30, 30);
-
-            /*
-            Point[] spaceship =
-            {
-                new Point(x, y),
-                new Point(x + 40, y + 20),
-                new Point(x + 40, y + 50),
-                new Point(x, y + 70),
-                new Point(x - 40, y + 50),
-                new Point(x - 40, y + 20),
-            };
-
-            SolidBrush yellow = new SolidBrush(Color.Yellow);
-            graphics.FillPolygon(yellow, spaceship);
-
-            SolidBrush brown = new SolidBrush(Color.Brown);
-            //ics.FillPath(brown, as3.gp1);
-            */
+ 
             Refresh();
         }
 
@@ -92,21 +73,40 @@ namespace SpaceTest
 
             graphics.FillEllipse(new SolidBrush(Color.White), x, y, 30, 30);
 
-            Point[] star =
+            Point[] star1 =
             {
-                new Point(330, 100),
-                new Point(20, 20),
-                new Point(20, 50),
-                new Point(50,  70),
-                new Point(20, 50),
-                new Point(20, 20),
+                new Point(100 , 100),
+                new Point(105 , 105),
+                new Point(110 , 130),
+                new Point(115 , 105),
+                new Point(120 , 100),
+                new Point(115 , 95),
+                new Point(110, 70),
+                new Point(105 , 95),
             };
-            graphics.FillPolygon(new SolidBrush(Color.Yellow), star);
+
+            Point[] star2 =
+            {
+                new Point(200 , 200),
+                new Point(205 , 205),
+                new Point(210 , 230),
+                new Point(215 , 205),
+                new Point(220 , 200),
+                new Point(215 , 195),
+                new Point(210, 170),
+                new Point(205 , 195),
+            };
+
+             
+
+            graphics.FillPolygon(new SolidBrush(Color.Yellow), star1);
+            graphics.FillPolygon(new SolidBrush(Color.Yellow), star2);
             Refresh();
         }
-            private void timer1_Tick(object sender, EventArgs e)
-        {
 
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
             x += 200;
            
             if (cnt < 3)
@@ -117,6 +117,7 @@ namespace SpaceTest
                 }
                 DrawDay();
             }
+
             else
             {
                 if(cnt % 6 == 3)
@@ -125,6 +126,7 @@ namespace SpaceTest
                 }
                 DrawNight();
             }
+
             cnt = (cnt + 1) % 6;
         }
     }
