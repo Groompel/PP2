@@ -27,11 +27,11 @@ namespace Calculator
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+           
         }
 
         private void Btn_Click(object sender, EventArgs e)
-        {
+        { 
             Button button = sender as Button;
             calc.Process(button.Text);
             
