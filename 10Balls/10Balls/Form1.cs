@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace _10Balls
@@ -39,17 +39,39 @@ namespace _10Balls
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             graphics = Graphics.FromImage(bitmap);
             pictureBox1.Image = bitmap;
+            ThreadStart ts = new ThreadStart(CheckBalls);
+            Thread th = new Thread(ts);
+            th.Start();
+        }
 
+        void CheckBalls()
+        {
+            foreach (Ball b in balls)
+            {
+                foreach (Ball b1 in balls)
+                {
+                    if (b.Color == b1.Color && b1.Selected && b.Selected)
+                        b.Deleted = true;
+                    b1.Deleted = true;
+                }
+            }
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
+
+            
+
             foreach(Ball b in balls)
             {
-                e.Graphics.FillEllipse(new SolidBrush(b.Color), b.Location.X - 25, b.Location.Y - 25, 50, 50);
-                if(b.Selected)
-                     e.Graphics.DrawEllipse(new Pen(Color.Black, 5), b.Location.X - 25, b.Location.Y - 25, 50, 50);
+                if (!b.Deleted)
+                {
+                    e.Graphics.FillEllipse(new SolidBrush(b.Color), b.Location.X - 25, b.Location.Y - 25, 50, 50);
+                    if (b.Selected)
+                        e.Graphics.DrawEllipse(new Pen(Color.Black, 5), b.Location.X - 25, b.Location.Y - 25, 50, 50);
+                }
             }
+            
             
         }
 
@@ -57,7 +79,7 @@ namespace _10Balls
         {
             foreach (Ball b in balls)
             {
-                if (Math.Pow(e.X - (b.Location.X + 25), 2) + Math.Pow(e.Y - (b.Location.Y+25),2) <= 25 * 25)
+                if (Math.Pow(e.X - (b.Location.X), 2) + Math.Pow(e.Y - (b.Location.Y),2) <= 25 * 25)
                 {
                     b.Selected = !b.Selected;
                     Refresh();
