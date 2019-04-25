@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _10Balls
@@ -18,7 +19,7 @@ namespace _10Balls
         List<Ball> balls = new List<Ball>
             {
                 new Ball(new Point(35, 100), Color.Green),
-                new Ball(new Point(123, 456), Color.Green),
+                new Ball(new Point(123, 305), Color.Green),
                 new Ball(new Point(564, 341), Color.Purple),
                 new Ball(new Point(100, 200), Color.Yellow),
                 new Ball(new Point(231, 300), Color.Yellow),
@@ -39,9 +40,7 @@ namespace _10Balls
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             graphics = Graphics.FromImage(bitmap);
             pictureBox1.Image = bitmap;
-            ThreadStart ts = new ThreadStart(CheckBalls);
-            Thread th = new Thread(ts);
-            th.Start();
+           
         }
 
         void CheckBalls()
@@ -50,9 +49,11 @@ namespace _10Balls
             {
                 foreach (Ball b1 in balls)
                 {
-                    if (b.Color == b1.Color && b1.Selected && b.Selected)
+                    if (b.Color == b1.Color && b1.Selected && b.Selected && b != b1)
+                    {
                         b.Deleted = true;
-                    b1.Deleted = true;
+                        b1.Deleted = true;
+                    }
                 }
             }
         }
@@ -60,7 +61,7 @@ namespace _10Balls
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
 
-            
+            CheckBalls();
 
             foreach(Ball b in balls)
             {
